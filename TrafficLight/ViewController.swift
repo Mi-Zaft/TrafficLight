@@ -31,17 +31,11 @@ class ViewController: UIViewController {
         trafficLightControllButton.setTitle("Next", for: .normal)
         switch currentTrafficLight {
         case "red":
-            currentTrafficLight = "yellow"
-            redLightView.alpha = 0.3
-            yellowLightView.alpha = 1
+            changeColorTrafficLight("yellow", redLightView, yellowLightView)
         case "yellow":
-            currentTrafficLight = "green"
-            yellowLightView.alpha = 0.3
-            greenLightView.alpha = 1
+            changeColorTrafficLight("green", yellowLightView, greenLightView)
         default:
-            currentTrafficLight = "red"
-            greenLightView.alpha = 0.3
-            redLightView.alpha = 1
+            changeColorTrafficLight("red", greenLightView, redLightView)
         }
     }
     
@@ -58,6 +52,16 @@ class ViewController: UIViewController {
     
     private func setupButton() {
         trafficLightControllButton.layer.cornerRadius = 10
+    }
+    
+    private func changeColorTrafficLight(
+        _ colorName: String,
+        _ beforeColor: UIView,
+        _ nextColor: UIView
+    ) {
+        currentTrafficLight = colorName
+        beforeColor.alpha = 0.3
+        nextColor.alpha = 1
     }
 }
 
