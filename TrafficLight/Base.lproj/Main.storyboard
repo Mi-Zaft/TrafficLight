@@ -49,17 +49,20 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H49-MY-SHs">
-                                <rect key="frame" x="154" y="656" width="82" height="45.666666666666629"/>
+                                <rect key="frame" x="156" y="656" width="78" height="32"/>
                                 <color key="backgroundColor" name="AccentColor"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="27"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Start">
-                                    <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="27"/>
-                                </buttonConfiguration>
+                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="trafficLightControllButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="otC-NX-jnK"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
                         <constraints>
                             <constraint firstItem="H49-MY-SHs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="B20-Oe-3Sg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VNU-X5-Kjl" secondAttribute="trailing" constant="131" id="KaR-dE-run"/>
@@ -68,6 +71,12 @@
                             <constraint firstItem="VNU-X5-Kjl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="33" id="uwb-bQ-5Ri"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="greenLightView" destination="HUb-Hs-vV8" id="eg1-8J-s07"/>
+                        <outlet property="redLightView" destination="qiQ-M1-Cam" id="al0-hW-0OJ"/>
+                        <outlet property="trafficLightControllButton" destination="H49-MY-SHs" id="QEx-Nh-p3R"/>
+                        <outlet property="yellowLightView" destination="dyO-Vc-wH9" id="dG7-59-ALB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -78,8 +87,8 @@
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="secondarySystemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
