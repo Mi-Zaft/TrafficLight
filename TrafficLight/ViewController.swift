@@ -15,7 +15,9 @@ class ViewController: UIViewController {
     
     @IBOutlet var trafficLightControllButton: UIButton!
     
-    private var currentTrafficLight = ""
+    private var currentTrafficLight = CurrentTrafficLight.red
+    private let lightIsOn: CGFloat = 1
+    private let lightIsOff: CGFloat = 0.3
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -23,41 +25,44 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
-        setupButton()
+        trafficLightControllButton.layer.cornerRadius = 10
+        
+        redLightView.alpha = lightIsOff
+        yellowLightView.alpha = lightIsOff
+        greenLightView.alpha = lightIsOff
+    }
+    
+    override func viewDidLayoutSubviews() {
+        redLightView.layer.cornerRadius = redLightView.frame.width / 2
+        yellowLightView.layer.cornerRadius = yellowLightView.frame.width / 2
+        greenLightView.layer.cornerRadius = greenLightView.frame.width / 2
     }
     
     @IBAction func trafficLightControllButtonTapped() {
-        trafficLightControllButton.setTitle("Next", for: .normal)
+        if trafficLightControllButton.currentTitle == "START" {
+            trafficLightControllButton.setTitle("Next", for: .normal)
+        }
+        
         switch currentTrafficLight {
-        case "red":
-            currentTrafficLight = "yellow"
-            redLightView.alpha = 0.3
-            yellowLightView.alpha = 1
-        case "yellow":
-            currentTrafficLight = "green"
-            yellowLightView.alpha = 0.3
-            greenLightView.alpha = 1
-        default:
-            currentTrafficLight = "red"
-            greenLightView.alpha = 0.3
-            redLightView.alpha = 1
+        case .red:
+            currentTrafficLight = .yellow
+            greenLightView.alpha = lightIsOff
+            redLightView.alpha = lightIsOn
+        case .yellow:
+            currentTrafficLight = .green
+            redLightView.alpha = lightIsOff
+            yellowLightView.alpha = lightIsOn
+        case .green:
+            currentTrafficLight = .red
+            yellowLightView.alpha = lightIsOff
+            greenLightView.alpha = lightIsOn
         }
-    }
-    
-    private func setupView() {
-        [
-            redLightView,
-            yellowLightView,
-            greenLightView
-        ].forEach { trafficLightView in
-            trafficLightView?.alpha = 0.3
-            trafficLightView?.layer.cornerRadius = (trafficLightView?.frame.width ?? 50) / 2
-        }
-    }
-    
-    private func setupButton() {
-        trafficLightControllButton.layer.cornerRadius = 10
     }
 }
 
+// MARK: - CurrentTrafficLight
+extension ViewController {
+    private enum CurrentTrafficLight {
+        case red, yellow, green
+    }
+}
